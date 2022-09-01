@@ -14,6 +14,7 @@ const appdata = [
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
+    debugger
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
