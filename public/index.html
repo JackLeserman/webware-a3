@@ -24,7 +24,10 @@
       method:'POST',
       body 
     })
-    .then( response => response.json() )
+    .then( response => {
+      const z = a + b
+      return response.json() 
+    })
     .then( json => console.log( json ) )
 
     return false
