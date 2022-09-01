@@ -27,7 +27,15 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }else{
-    sendFile( response, filename )
+    const html = `
+    <html>
+    <body>
+      ${ appdata.map( item => JSON.stringify(item) ) } 
+    </body>
+    </html>
+    `
+    response.end( html )
+    //sendFile( response, filename )
   }
 }
 
@@ -44,7 +52,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON.stringify({ test:'a' }))
+    response.end( JSON.stringify( appdata ) )
   })
 }
 
