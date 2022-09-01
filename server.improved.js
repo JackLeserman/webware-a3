@@ -27,7 +27,16 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }else{
-    sendFile( response, filename )
+    const data = appdata.map( d => JSON.stringify( d ) )
+    const html = `
+  <html>
+  <body>
+  ${data.toString()}
+  </body>
+  </html>
+`  
+    response.end( html )
+    //sendFile( response, filename )
   }
 }
 
