@@ -14,7 +14,6 @@ const appdata = [
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    debugger
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
@@ -27,16 +26,7 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }else{
-    const data = appdata.map( d => JSON.stringify( d ) )
-    const html = `
-  <html>
-  <body>
-  ${data.toString()}
-  </body>
-  </html>
-`  
-    response.end( html )
-    //sendFile( response, filename )
+    sendFile( response, filename )
   }
 }
 
