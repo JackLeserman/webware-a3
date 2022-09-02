@@ -6,40 +6,10 @@
   </head>
   <body>
     <form action="/test">
-      <input type="text" id="yourname" value="your name here">
+      <input type="text" id="yourname">
       <button>submit</button>
     </form>
   </body>
   <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( response => response.json() )
-    .then( json => {
-      json.forEach( item => {
-        const p = document.createElement('p')
-        p.innerText = JSON.stringify( item )
-        document.body.appendChild( p )
-      })
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    //const button = document.querySelector( 'button' )
-    //button.onclick = submit
-  }
-
   </script>
 </html>
