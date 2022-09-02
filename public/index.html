@@ -4,42 +4,22 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
+  <h1>Grocery Boi</h1>
+  <h2>An overcomplicated shopping list!</h2>
+  <div class = "carts">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+    <img src="https://cdn.glitch.global/82c1bd81-7308-4ea7-bc2b-b0ff2ce9acff/thumbnails%2Fcart.jpg?1662153579028" alt="" width="70" height="70">
+  </div>
   <body>
     <form action="/test">
-      <input type="text" id="yourname" value="your name here">
+      <input type="text" id="item" placeholder="Item (e.g. Apples) ">
+      <input type="text" id="quantity" placeholder="Quantity (e.g. 6) ">
+      <input type="text" id="store" placeholder="Store (e.g. Trader Joe's)">
       <button>submit</button>
     </form>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( response => response.json() )
-    .then( json => {
-      json.forEach( item => {
-        const p = document.createElement('p')
-        p.innerText = JSON.stringify( item )
-        document.body.appendChild( p )
-      })
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    //const button = document.querySelector( 'button' )
-    //button.onclick = submit
-  }
-
-  </script>
 </html>

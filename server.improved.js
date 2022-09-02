@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'item': 'beef'}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,16 +23,10 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if(request.url === 'groceryData'){
+    response.end(JSON.stringify(appdata));
   }else{
-    const html = `
-    <html>
-    <body>
-      ${ appdata.map( item => JSON.stringify(item) ) } 
-    </body>
-    </html>
-    `
-    response.end( html )
-    //sendFile( response, filename )
+    sendFile(response, filename)
   }
 }
 
@@ -47,7 +39,9 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
+    const data = JSON.parse(dataString)
+    
+    const newItem = {'item':data.item}
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
