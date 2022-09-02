@@ -41,11 +41,12 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     const data = JSON.parse(dataString)
     
-    const newItem = {'item':data.item}
-    // ... do something with the data here!!!
+    const addItem = {'item': data.item}
+    appdata.push(addItem)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end( JSON.stringify( appdata ) )
+    //response.end( JSON.stringify( appdata ) )
+    response.end()
   })
 }
 
