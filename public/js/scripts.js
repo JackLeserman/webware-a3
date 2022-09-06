@@ -2,9 +2,9 @@ const submit = function (e) {
 
     e.preventDefault()
 
-    const input_item = document.querySelector('#item').value
+    const item = document.querySelector('#item').value
     const json = {
-                'item': input_item,
+                'item': item,
             }, //check comma
 
             body = JSON.stringify(json)
@@ -12,28 +12,28 @@ const submit = function (e) {
         fetch('/submit', {
             method: 'POST',
             body 
-        }).then(function (response) {})
+        })
   
         showData();
         return false
     }
 
 
-const genTable = function (studentList, editIndex) {
+const genTable = function (data) {
   console.log("E")
-    let studentTable = document.querySelector('#groceryData');
-    studentTable.innerHTML =
+    let table = document.querySelector('#groceryData');
+    table.innerHTML =
         '<tr>\n' +
         '<th align="center">First Name</th>\n' +
         '</tr>';
 
-    for (let i = 0; i < studentList.length; i++) {
-        const currentStudent = studentList[i];
+    for (let i = 0; i < data.length; i++) {
+        const currentStudent = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + currentStudent.firstName + '</div></td>\n');
+        newLine += ('<td align="center">' + currentStudent.item + '</div></td>\n');
         newLine += '</div>' + '</tr>';
 
-        studentTable.innerHTML += newLine
+        table.innerHTML += newLine
     }
 }
 
@@ -42,7 +42,7 @@ const showData = function () {
         method: 'GET'
     }).then(function(response) {
         return response.json()
-    }).then(function (groceryData) {
+    }).then(function (groceryList) {
         genTable(groceryData, -1)
     })
 }
