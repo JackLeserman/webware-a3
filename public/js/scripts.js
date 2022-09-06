@@ -3,9 +3,13 @@ const submit = function (e) {
     e.preventDefault()
 
     const item = document.querySelector('#item').value
+    const quan = document.querySelector('#quan').value
+    const store = document.querySelector('#store').value
     const json = {
                 'item': item,
-            }, //check comma
+                'quan':quan,
+                'store':store,
+            },
 
             body = JSON.stringify(json)
 
@@ -19,11 +23,13 @@ const submit = function (e) {
 
 
 const genTable = function (data) {
-  console.log("E")
+
     let table = document.querySelector('#groceryData');
     table.innerHTML =
         '<tr>\n' +
         '<th align="center">Item</th>\n' +
+        '<th align="center">Quantity</th>\n' +
+        '<th align="center">Store</th>\n' +
         '</tr>';
 
     for (let i = 0; i < data.length; i++) {
