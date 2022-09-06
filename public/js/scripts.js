@@ -35,7 +35,7 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + currentItem.item + '</div></td>\n');
+        newLine += ('<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
