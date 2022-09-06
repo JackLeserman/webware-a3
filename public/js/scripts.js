@@ -20,7 +20,8 @@ const submit = function (e) {
 
 
 const genTable = function (studentList, editIndex) {
-    let studentTable = document.querySelector('#item');
+  console.log("E")
+    let studentTable = document.querySelector('#groceryData');
     studentTable.innerHTML =
         '<tr>\n' +
         '<th align="center">First Name</th>\n' +
@@ -41,7 +42,12 @@ const showData = function () {
         method: 'GET'
     }).then(function(response) {
         return response.json()
-    }).then(function (studentList) {
-        genTable(studentList, -1)
+    }).then(function (groceryData) {
+        genTable(groceryData, -1)
     })
+}
+
+window.onload = function () {
+    const button = document.querySelector('button')
+    button.onclick = submit
 }
