@@ -28,16 +28,16 @@ const genTable = function (data) {
     table.innerHTML =
         '<tr>\n' +
         '<th align="center"></th>\n' +
-        '<th align="center"></th>\n' +
         '<th align="center">Item</th>\n' +
         '<th align="center">Quantity</th>\n' +
         '<th align="center">Store</th>\n' +
+        '<th align="center"></th>\n' +
         '</tr>';
 
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + '<button class = "button_edit">Edit</button>' + '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n');
+        newLine += ('<td align="center">' + '<button class = "button_delete">Delete</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
