@@ -69,9 +69,8 @@ button{
 }
 
 .button_edit{
-    margin-top: 10px;
-    font-size: 15px;
-    width: 10%;
+    font-size: 12px;
+    width: 100%;
     background-color: white;
     font-family: "Open Sans";
 }
