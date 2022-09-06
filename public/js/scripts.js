@@ -15,7 +15,6 @@ const submit = function (e) {
         })
   
         showData();
-        return false
     }
 
 
@@ -24,13 +23,13 @@ const genTable = function (data) {
     let table = document.querySelector('#groceryData');
     table.innerHTML =
         '<tr>\n' +
-        '<th align="center">First Name</th>\n' +
+        '<th align="center">Item</th>\n' +
         '</tr>';
 
     for (let i = 0; i < data.length; i++) {
-        const currentStudent = data[i];
+        const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + currentStudent.item + '</div></td>\n');
+        newLine += ('<td align="center">' + currentItem.item + '</div></td>\n');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
@@ -43,7 +42,7 @@ const showData = function () {
     }).then(function(response) {
         return response.json()
     }).then(function (groceryList) {
-        genTable(groceryData, -1)
+        genTable(groceryList, -1)
     })
 }
 

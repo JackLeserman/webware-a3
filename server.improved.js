@@ -23,7 +23,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else if(request.url === 'groceryData'){
+  }else if(request.url === '/groceryData'){
     response.end(JSON.stringify(appdata));
   }else{
     sendFile(response, filename)
@@ -37,11 +37,13 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+  request.on('end', function() {
     const data = JSON.parse(dataString)
     
-    const addItem = {'item': data.item}
+    
+    const addItem = {
+      'item': data.item,
+    }
     appdata.push(addItem)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
