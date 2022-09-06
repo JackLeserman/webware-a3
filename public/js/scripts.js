@@ -42,6 +42,26 @@ const genTable = function (data) {
     }
 }
 
+const editTable = function (data) {
+
+    let table = document.querySelector('#groceryData');
+    table.innerHTML =
+        '<tr>\n' +
+        '<th align="center">Item</th>\n' +
+        '<th align="center">Quantity</th>\n' +
+        '<th align="center">Store</th>\n' +
+        '</tr>';
+
+    for (let i = 0; i < data.length; i++) {
+        const currentItem = data[i];
+        let newLine = '<tr>\n';
+        newLine += ('<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n');
+        newLine += '</div>' + '</tr>';
+
+        table.innerHTML += newLine
+    }
+}
+
 const showData = function () {
     fetch('/groceryData', {
         method: 'GET'

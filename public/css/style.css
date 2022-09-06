@@ -60,12 +60,20 @@ hr.solid{
 
 button{
     font-size: 25px;
-    width: 10%;
+    width: 20%;
     background-color: #EAE509;
     border-color: #E9EFC0 ;
     font-family: "Open Sans";
     margin-left: auto;
     margin-right: auto;
+}
+
+.button_edit{
+    margin-top: 10px;
+    font-size: 15px;
+    width: 20%;
+    background-color: white;
+    font-family: "Open Sans";
 }
 
 .carts {
