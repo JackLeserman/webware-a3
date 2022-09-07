@@ -1,17 +1,14 @@
 let tag = 1
 const submit = function (e) {
-
     e.preventDefault()
 
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
-    const tag = tag + 1
     const json = {
                 'item': item,
                 'quan':quan,
                 'store':store,
-                'tag':tag
             },
 
             body = JSON.stringify(json)
@@ -22,6 +19,11 @@ const submit = function (e) {
         })
   
         showData();
+    }
+
+const remove = function (e) {
+    e.preventDefault()
+    console.log("e")
     }
 
 

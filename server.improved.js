@@ -6,6 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+let tag = 0;
+
 const appdata = [
   { 'item': 'apples', 'quan':'5','store':'shaws', 'tag':1}
 ]
@@ -63,7 +65,10 @@ const addRow = function( request, response ) {
       'item': data.item,
       'quan': data.quan,
       'store': data.store,
+      'tag': tag,
     }
+    
+    tag = tag + 1
     appdata.push(addItem)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
