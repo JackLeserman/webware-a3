@@ -6,6 +6,8 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
+let tag = 0;
+
 const appdata = [];
 
 const server = http.createServer(function (request, response) {
@@ -26,6 +28,7 @@ const handleGet = function (request, response) {
   } else {
     sendFile(response, filename);
   }
+};
 
 const handlePost = function (request, response) {
   if (request.url === "/submit") {
@@ -96,9 +99,9 @@ const delRow = function (request, response) {
   request.on("end", function () {
     let index = -1;
     const data = JSON.parse(dataString);
-    let tag2 = data.tag;
+    tag = data.tag;
     for (let i = 0; i < appdata.length; i++) {
-      if (String(appdata[i].id) == String(tag2)) {
+      if (String(appdata[i].tag) == String(tag)) {
         index = i;
         break;
       }
@@ -123,13 +126,15 @@ const addRow = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
-    
+
     const addItem = {
       item: data.item,
       quan: data.quan,
       store: data.store,
-      tag: data.tag,
+      tag: tag,
     };
+
+    tag = tag + 1;
     appdata.push(addItem);
 
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
