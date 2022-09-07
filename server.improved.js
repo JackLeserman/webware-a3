@@ -35,12 +35,13 @@ const handlePost = function( request, response ) {
     addRow(request, response);
   } else if(request.url === "/remove"){
     delRow(request, response);
-  } else if(request.url === "/editRow"){
+  } else if(request.url === "/update"){
     editRow(request, response);
   }
 }
 
 const delRow = function( request, response ) {
+  let dataString = "";
   
 }
 

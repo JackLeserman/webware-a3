@@ -23,16 +23,38 @@ const submit = function (e) {
     }
 
  function remove(tag) {
-    
-    console.log("remove");
-    console.log(tag)
-
+    console.log("remove:");
+    const input = tag;
+    const json = { tag: input },
+    body = JSON.stringify(json);
+   
+    fetch('/remove', {
+      method: 'POST',
+      body 
+    })
+        showData();
     }
 
-
-const update = function (tag) {
-    console.log("edit")
+ function update(tag) {
+    console.log("remove:");
+    const input = tag;
+    const item = document.querySelector('#item').value
+    const quan = document.querySelector('#quan').value
+    const store = document.querySelector('#store').value
+    const json = {
+        'item': item,
+        'quan':quan,
+        'store':store,
+    },
+    body = JSON.stringify(json);
+   
+    fetch('/update', {
+      method: 'POST',
+      body 
+    })
+        showData();
     }
+
 
 const help = function (e) {
     alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update!");
@@ -62,7 +84,7 @@ const genTable = function (data) {
         let newLine = '<tr>\n';
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
-        let button_del = '<button class = "button_delete" id="E" onclick = "remove(this.id)">Remove</button>'
+        let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
         
         
         let spacer = '<td align="center">';
