@@ -69,20 +69,10 @@ button{
     margin-right: auto;
 }
 
-.button_help{
+.button_help2{
     font-size: 18px;
     width: 10%;
     background-color: white;
-    border-color: #E9EFC0 ;
-    font-family: "Open Sans";
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.button_clear{
-    font-size: 18px;
-    width: 10%;
-    background-color: red;
     border-color: #E9EFC0 ;
     font-family: "Open Sans";
     margin-left: auto;
@@ -101,6 +91,25 @@ button{
     width: 100%;
     background-color: #EAE509;
     font-family: "Open Sans";
+}
+
+.button_help{
+    font-size: 18px;
+    width: 10%;
+    background-color: #E9EFC0;
+    border-color: #E9EFC0 ;
+    font-family: "Open Sans";
+    margin-left: auto;
+    margin-right: auto;
+}
+.button_help2{
+    font-size: 18px;
+    width: 10%;
+    background-color: White;
+    border-color: #E9EFC0 ;
+    font-family: "Open Sans";
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .carts {

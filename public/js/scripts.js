@@ -112,7 +112,20 @@ const showData = function () {
         genTable(groceryList, -1)
     })
 }
+
+const clearAll = function () {
+  let isExecuted = confirm("Are you sure to execute this action?");
+  if(isExecuted){
+    tag_count = -1
+    fetch('/clear', {
+        method: 'GET'
+    })
+    showData();  
+  }
+}
+          
 document.getElementById("refresh").onclick = showData
+document.getElementById("clear").onclick = clearAll
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")

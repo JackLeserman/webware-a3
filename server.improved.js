@@ -37,6 +37,8 @@ const handlePost = function (request, response) {
     delRow(request, response);
   } else if (request.url === "/update") {
     editRow(request, response);
+  } else if (request.url === "/clear") {
+    cleardata(request, response);
   }
 };
 
