@@ -1,4 +1,4 @@
-let tag_count = 0;
+let tag_count = -1;
 
 const submit = function (e) {
     e.preventDefault()
@@ -7,7 +7,7 @@ const submit = function (e) {
     const quan = document.querySelector('#quan').value;
     const store = document.querySelector('#store').value;
     tag_count = tag_count + 1;
-    console.log(tag_count);
+    console.log("Adding to" + tag_count);
     let new_tag = tag_count.toString
     const json = {
                 'item': item,
@@ -26,7 +26,8 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
-    console.log(tag);
+    console.log("Removing " + tag);
+    console.log("Current tags " + tag_count)
     const json = { tag: tag };
     const body = JSON.stringify(json);
    
@@ -38,7 +39,7 @@ const remove = function (tag) {
     };
 
  function update(tag) {
-    console.log("remove:");
+    console.log("Updating " + tag);
     const input = tag;
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
@@ -55,6 +56,7 @@ const remove = function (tag) {
       method: 'POST',
       body 
     })
+        tag_count = tag_count - 1
         showData();
     }
 
@@ -84,6 +86,8 @@ const genTable = function (data) {
         
         
         const currentItem = data[i];
+        let tag2 = currentItem.tag
+        console.log(tag2)
         let newLine = '<tr>\n';
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
@@ -91,7 +95,7 @@ const genTable = function (data) {
         
         
         let spacer = '<td align="center">';
-        newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store +  spacer + currentItem.tag + '</div></td>\n' + spacer + button_update);
+        newLine += ( spacer + currentItem.tag + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
