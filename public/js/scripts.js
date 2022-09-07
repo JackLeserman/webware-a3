@@ -61,7 +61,7 @@ const genTable = function (data) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
-        let button_update = '<button class = "button_edit" id="F" onclick = "update(this.id)+ >Update</button>'
+        let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
         let button_del = '<button class = "button_delete" id="E" onclick = "remove(this.id)">Remove</button>'
         
         
