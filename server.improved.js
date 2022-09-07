@@ -6,8 +6,6 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
-let tag = 0;
-
 const appdata = [];
 
 const server = http.createServer(function (request, response) {
@@ -28,7 +26,6 @@ const handleGet = function (request, response) {
   } else {
     sendFile(response, filename);
   }
-};
 
 const handlePost = function (request, response) {
   if (request.url === "/submit") {
@@ -126,12 +123,12 @@ const addRow = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
-
+    
     const addItem = {
       item: data.item,
       quan: data.quan,
       store: data.store,
-      tag: tag,
+      tag: data.tag,
     };
     appdata.push(addItem);
 
