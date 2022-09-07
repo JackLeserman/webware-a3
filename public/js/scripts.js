@@ -2,15 +2,13 @@ let tag_count = -1
 
 const submit = function (e) {
     e.preventDefault()
-
+    tag_count = tag_count + 1
     const item = document.querySelector('#item').value;
     const quan = document.querySelector('#quan').value;
     const store = document.querySelector('#store').value;
-    tag_count = parseInt(tag_count) + 1;
     console.log("Adding to" + tag_count);
     console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
-    tag_count = tag_count + 1
     const json = {
                 'item': item,
                 'quan':quan,
