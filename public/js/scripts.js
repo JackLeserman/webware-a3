@@ -45,6 +45,7 @@ const remove = function (tag) {
         'item': item,
         'quan':quan,
         'store':store,
+        'tag':tag
     },
     body = JSON.stringify(json);
    
