@@ -6,9 +6,9 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
-let tag = 0;
+let tag = 1
 
-const appdata = [];
+const appdata = []
 
 const server = http.createServer(function (request, response) {
   if (request.method === "GET") {
@@ -100,13 +100,13 @@ const delRow = function (request, response) {
     let index = -1;
     const data = JSON.parse(dataString);
     tag = data.tag;
+    console.log("REMOVING "  + tag)
     for (let i = 0; i < appdata.length; i++) {
       if (String(appdata[i].tag) == String(tag)) {
         index = i;
         break;
       }
     }
-    tag = tag +- 1;
     appdata.splice(index, 1);
     const newdata = JSON.stringify(appdata);
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
