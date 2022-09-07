@@ -40,41 +40,65 @@ const handlePost = function( request, response ) {
   }
 }
 
+
+const editRow = function( request, response ) {
+  let dataString = ''
+  console.log("mks")
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+  request.on('end', function() {
+    const data = JSON.parse(dataString)
+    
+    
+    const addItem = {
+      'item': data.item,
+      'quan': data.quan,
+      'store': data.store,
+      'tag': tag,
+    }
+    
+    tag = tag + 1
+    appdata.push(addItem)
+    
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    //response.end( JSON.stringify( appdata ) )
+    response.end()
+  })
+}
+
 const delRow = function( request, response ) {
   let dataString = ''
-  console.log("here");
+  console.log("mks")
   request.on( 'data', function( data ) {
-    dataString += data 
-  });
-  
-  console.log("here");
-  request.on("end", function () {
-    let index = -1;
-    let tag_delete = JSON.parse(tag_delete);
-    console.log(tag_delete);
-     for (let i = 0; i < appdata.length; i++) {
-       if(String(appdata[i].id) === String(tag_delete)){
-        index = i;
-        break;
-       }  
-     }
-    appdata.splice(index,1)
-    const newdata = JSON.stringify(appdata);
+      dataString += data 
+  })
+
+  request.on('end', function() {
+    const data = JSON.parse(dataString)
+    
+    
+    const addItem = {
+      'item': data.item,
+      'quan': data.quan,
+      'store': data.store,
+      'tag': tag,
+    }
+    
+    tag = tag + 1
+    appdata.push(addItem)
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     //response.end( JSON.stringify( appdata ) )
     response.end()
   })
 }
   
-    
-
-const editRow = function( request, response ) {
-  
-}
 
 const addRow = function( request, response ) {
   let dataString = ''
-
+  console.log("mks")
   request.on( 'data', function( data ) {
       dataString += data 
   })

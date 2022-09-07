@@ -24,9 +24,9 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
-    console.log("remove:" + tag);
-    const json = { tag: tag },
-    body = JSON.stringify(json);
+    console.log(tag);
+    const json = { tag: tag };
+    const body = JSON.stringify(json);
    
     fetch('/remove', {
       method: 'POST',
