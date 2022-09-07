@@ -42,7 +42,7 @@ const help = function (e) {
 
 
 
-document.getElementById("help").onclick = help;
+
 
 const genTable = function (data) {
 
@@ -57,15 +57,13 @@ const genTable = function (data) {
         '</tr>';
 
     for (let i = 0; i < data.length; i++) {
+        
+        
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        let id_update = "update_" + i.toString();
-        let id_del = "del_" + i.toString();
-        let button_del = '<button class = "button_delete" id="temp_del">Remove</button>'
-        let button_update = '<button class = "button_edit" id="temp_update" >Update</button>'
-        
-        //document.getElementById("temp_del").id = t;
-        //document.getElementById("temp_update").id =ty;
+        let button_del = '<button class = "button_delete" name = "del" id='+ i +'>Remove</button>'
+        let button_update = '<button class = "button_edit" name = "update" id='+ i + '>Update</button>'
+      
         
         
         let spacer = '<td align="center">';
@@ -73,10 +71,12 @@ const genTable = function (data) {
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
-      
+        document.getElementByName("del").onclick = remove;
+        document.getElementByName("update").onclick = update;
 
     }
 }
+document.getElementById("help").onclick = help;
 
 const showData = function () {
     fetch('/groceryData', {
