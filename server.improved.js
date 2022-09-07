@@ -41,8 +41,30 @@ const handlePost = function( request, response ) {
 }
 
 const delRow = function( request, response ) {
+  let dataString = ''
   
+  request.on( 'data', function( data ) {
+    dataString += data 
+  });
+  
+  request.on("end", function () {
+    let index = -1;
+    let tag_delete = JSON.parse(tag_delete);
+     for (let i = 0; i < appdata.length; i++) {
+       if(String(appdata[i].id) === String(tag_delete)){
+        index = i;
+        break;
+       }  
+     }
+    appdata.splice(index,1)
+    const newdata = JSON.stringify(appdata);
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    //response.end( JSON.stringify( appdata ) )
+    response.end()
+  })
 }
+  
+    
 
 const editRow = function( request, response ) {
   
@@ -68,7 +90,7 @@ const addRow = function( request, response ) {
     
     tag = tag + 1
     appdata.push(addItem)
-
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     //response.end( JSON.stringify( appdata ) )
     response.end()

@@ -23,7 +23,7 @@ const submit = function (e) {
     }
 
  function remove(tag) {
-    console.log("remove:");
+    console.log("remove:" + tag);
     const input = tag;
     const json = { tag: input },
     body = JSON.stringify(json);
