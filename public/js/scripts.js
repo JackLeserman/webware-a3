@@ -33,13 +33,11 @@ const submit = function (e) {
       body 
     })
 
-    .then( function (response){
-    return response.json();
-    }) .then(function(data){
-       console.log(data)
-       showData();        
-      });
-     return false
+    .then( async function (response){
+    let data = await response.json();
+      console.log(data)
+      showData(); //todo   
+    })
     }
 
  function update(tag) {
