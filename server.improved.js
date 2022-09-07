@@ -40,17 +40,25 @@ const handlePost = function( request, response ) {
   request.on('end', function() {
     const data = JSON.parse(dataString)
     
-    if(request.url === '/submit'){
-      const addItem = {
+    let url = request.url
+    console.log(url)
+    
+    if(url == '/submit'){
+       const addItem = {
         'item': data.item,
         'quan': data.quan,
         'store': data.store,
-      }
+      } 
+      appdata.push(addItem)
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      //response.end( JSON.stringify( appdata ) )
+      response.end()
+    }
     
-    
-    
+
     
     appdata.push(addItem)
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     //response.end( JSON.stringify( appdata ) )
     response.end()
