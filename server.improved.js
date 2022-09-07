@@ -42,14 +42,16 @@ const handlePost = function( request, response ) {
 
 const delRow = function( request, response ) {
   let dataString = ''
-  
+  console.log("here");
   request.on( 'data', function( data ) {
     dataString += data 
   });
   
+  console.log("here");
   request.on("end", function () {
     let index = -1;
     let tag_delete = JSON.parse(tag_delete);
+    console.log(tag_delete);
      for (let i = 0; i < appdata.length; i++) {
        if(String(appdata[i].id) === String(tag_delete)){
         index = i;

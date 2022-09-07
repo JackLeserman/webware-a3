@@ -24,7 +24,7 @@ const submit = function (e) {
 
  function remove(tag) {
     console.log("remove:" + tag);
-    const input = tag;
+    const input = tag.toString;
     const json = { tag: input },
     body = JSON.stringify(json);
    
@@ -32,7 +32,11 @@ const submit = function (e) {
       method: 'POST',
       body 
     })
-        showData();
+    .then( function (response){
+    return response.json();
+    }) .then(function(info)){
+       showData();        
+    })
     }
 
  function update(tag) {
