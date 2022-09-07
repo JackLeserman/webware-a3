@@ -25,8 +25,8 @@ const submit = function (e) {
 const remove = function (e) {
     e.preventDefault();
     console.log("remove");
-    let id_value = e.composedPath()[0].id;
-    console.log(id_value);
+    let tag_value = e.composedPath()[0].name;
+    console.log(tag_value);
     }
 
 
@@ -59,18 +59,20 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        let button_del = '<button class = "button_delete" id = "remove">Remove</button>'
-        let button_update = '<button class = "button_edit" name= '+ i +' id = "update">Update</button>'
+        let id_update = "update_" + i.toString();
+        let id_del = "del_" + i.toString();
+
+        let button_del = '<button class = "button_delete" id= '+ i +'>Remove</button>'
+        let button_update = '<button class = "button_edit" id= '+ i +'>Update</button>'
         let spacer = '<td align="center">'
         newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + '</div></td>\n' + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
-        document.getElementById("update").onclick = update;
-        document.getElementById("remove").onclick = remove;
+      
+
     }
 }
-
 
 const showData = function () {
     fetch('/groceryData', {
@@ -81,6 +83,7 @@ const showData = function () {
         genTable(groceryList, -1)
     })
 }
+
 
 window.onload = function () {
     const button = document.querySelector('button')
