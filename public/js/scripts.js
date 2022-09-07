@@ -32,9 +32,11 @@ const submit = function (e) {
       method: 'POST',
       body 
     })
+
     .then( function (response){
     return response.json();
-    }) .then(function(info){
+    }) .then(function(data){
+       console.log(data)
        showData();        
       });
      return false
