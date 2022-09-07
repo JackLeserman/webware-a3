@@ -8,6 +8,7 @@ const submit = function (e) {
     const store = document.querySelector('#store').value;
     tag_count = tag_count + 1;
     console.log("Adding to" + tag_count);
+    console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
     const json = {
                 'item': item,
@@ -44,6 +45,8 @@ const remove = function (tag) {
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
+    tag_count = tag_count - 1;
+   console.log("Current tags " + tag_count);
     const json = {
         'item': item,
         'quan':quan,
@@ -56,16 +59,16 @@ const remove = function (tag) {
       method: 'POST',
       body 
     })
-        tag_count = tag_count - 1
         showData();
     }
 
 
 const help = function (e) {
-    alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update!");
+    alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update! If lists do not update due to server challenges, try Manual Refresh!");
     }
 
 document.getElementById("help").onclick = help
+
 
 
 
@@ -112,7 +115,7 @@ const showData = function () {
         genTable(groceryList, -1)
     })
 }
-
+document.getElementById("refresh").onclick = showData
 
 window.onload = function () {
     const button = document.querySelector('button')
