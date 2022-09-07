@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'item': 'apples', 'quan':'5','store':'shaws'},
+  { 'item': 'apples', 'quan':'5','store':'shaws', 'tag':1}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -31,6 +31,24 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
+  if(request.url === "/submit"){
+    addRow(request, response);
+  } else if(request.url === "/remove"){
+    delRow(request, response);
+  } else if(request.url === "/editRow"){
+    editRow(request, response);
+  }
+}
+
+const delRow = function( request, response ) {
+  
+}
+
+const editRow = function( request, response ) {
+  
+}
+
+const addRow = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -40,27 +58,12 @@ const handlePost = function( request, response ) {
   request.on('end', function() {
     const data = JSON.parse(dataString)
     
-    let url = request.url
-    console.log(url)
     
-    if(url == '/submit'){
-       const addItem = {
-        'item': data.item,
-        'quan': data.quan,
-        'store': data.store,
-      } 
-      appdata.push(addItem)
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-      //response.end( JSON.stringify( appdata ) )
-      response.end()
+    const addItem = {
+      'item': data.item,
+      'quan': data.quan,
+      'store': data.store,
     }
-    
-    if(url == '/delete'){
-      appdata.splice(row, 1)
-    }
-    
-
-    
     appdata.push(addItem)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

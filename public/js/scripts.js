@@ -1,3 +1,4 @@
+let tag = 1
 const submit = function (e) {
 
     e.preventDefault()
@@ -5,10 +6,12 @@ const submit = function (e) {
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
+    const tag = tag + 1
     const json = {
                 'item': item,
                 'quan':quan,
                 'store':store,
+                'tag':tag
             },
 
             body = JSON.stringify(json)
@@ -37,7 +40,7 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + '<button class = "button_delete">Delete</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
+        newLine += ('<td align="center">' + '<button class = "button_delete">remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
