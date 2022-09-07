@@ -106,12 +106,9 @@ const delRow = function (request, response) {
         break;
       }
     }
+    tag = tag +- 1;
     appdata.splice(index, 1);
     const newdata = JSON.stringify(appdata);
-    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-    //response.end( JSON.stringify( appdata ) )
-    response.end();
-
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     //response.end( JSON.stringify( appdata ) )
     response.end();

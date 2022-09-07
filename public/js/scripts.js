@@ -110,7 +110,7 @@ const showData = function () {
     }).then(function(response) {
         return response.json()
     }).then(function (groceryList) {
-        genTable(groceryList, -1)
+        genTable(groceryList)
     })
 }
 
