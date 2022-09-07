@@ -133,8 +133,6 @@ const addRow = function (request, response) {
       store: data.store,
       tag: tag,
     };
-
-    tag = tag + 1;
     appdata.push(addItem);
 
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
