@@ -60,6 +60,10 @@ const genTable = function (data) {
         let newLine = '<tr>\n';
         let button_del = '<button class = "button_delete"  id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i.toString + '>Update</button>'
+        
+        button_del.onclick = remove;
+        button_update.onclick = update;
+        
         let spacer = '<td align="center">';
         newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + '</div></td>\n' + spacer + button_update);
         newLine += '</div>' + '</tr>';
@@ -68,8 +72,6 @@ const genTable = function (data) {
 
     }
 }
-document.getElementById("1").onclick = help;
-document.getElementById("help").onclick = help;
 
 const showData = function () {
     fetch('/groceryData', {
