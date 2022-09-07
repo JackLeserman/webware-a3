@@ -23,20 +23,17 @@ const submit = function (e) {
     }
 
 const remove = function (e) {
-    e.preventDefault();
     console.log("remove");
-    let tag_value = e.composedPath()[0].name;
+    let tag_value = e.composedPath()[0].id;
     console.log(tag_value);
     }
 
 
 const update = function (e) {
-    e.preventDefault()
     console.log("edit")
     }
 
 const help = function (e) {
-    e.preventDefault()
     alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update!");
     }
 
@@ -61,21 +58,17 @@ const genTable = function (data) {
         
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        let button_del = '<button class = "button_delete" name = "del" id='+ i +'>Remove</button>'
-        let button_update = '<button class = "button_edit" name = "update" id='+ i + '>Update</button>'
-      
-        
-        
+        let button_del = '<button class = "button_delete"  id='+ i.toString +'>Remove</button>'
+        let button_update = '<button class = "button_edit" id='+ i.toString + '>Update</button>'
         let spacer = '<td align="center">';
         newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + '</div></td>\n' + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
-        document.getElementByName("del").onclick = remove;
-        document.getElementByName("update").onclick = update;
 
     }
 }
+document.getElementById("1").onclick = help;
 document.getElementById("help").onclick = help;
 
 const showData = function () {
