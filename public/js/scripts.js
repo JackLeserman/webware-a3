@@ -113,7 +113,7 @@ const showData = function () {
     })
 }
 
-const clearAll = function () {
+const clearAll2 = function () {
   let isExecuted = confirm("Are you sure to execute this action?");
   if(isExecuted){
     tag_count = -1
@@ -123,9 +123,22 @@ const clearAll = function () {
     showData();  
   }
 }
+
+const clearall = function (tag) {
+    const json = {};
+    const body = JSON.stringify(json);
+    tag_count = - 1;
+    console.log("Current tags " + tag_count);
+    fetch('/clear', {
+      method: 'POST',
+      body 
+    });
+    showData(); //todo   
+    console.log("clear complete")
+    };
           
 document.getElementById("refresh").onclick = showData
-document.getElementById("clear").onclick = clearAll
+document.getElementById("clear").onclick = clearall
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")

@@ -38,8 +38,29 @@ const handlePost = function (request, response) {
   } else if (request.url === "/update") {
     editRow(request, response);
   } else if (request.url === "/clear") {
-    cleardata(request, response);
+    clearall(request, response);
   }
+};
+
+const clearall = function (request, response) {
+  let dataString = "";
+  request.on("data", function (data) {
+    dataString += data;
+  });
+
+  request.on("end", function () {
+    let index = -1;
+    const data = JSON.parse(dataString);
+    appdata = []
+    const newdata = JSON.stringify(appdata);
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+  });
 };
 
 const editRow = function (request, response) {
