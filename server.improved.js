@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'item': 'pears', 'quan':'5','store':'shaws'}
+  { 'item': 'apples', 'quan':'5','store':'shaws'}
 ]
 
 const server = http.createServer( function( request,response ) {
