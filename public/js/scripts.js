@@ -23,7 +23,12 @@ const submit = function (e) {
 
 const remove = function (e) {
     e.preventDefault()
-    console.log("e")
+    console.log("remove")
+    }
+
+const edit = function (e) {
+    e.preventDefault()
+    console.log("edit")
     }
 
 
@@ -42,10 +47,12 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + '<button class = "button_delete">remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
+        newLine += ('<td align="center">' + '<button class = "button_delete" "name= = "remove">Remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit" id = "edit">Edit</button>');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
+        document.getElementById("edit").onclick = edit;
+        document.getElementById("remove").onclick = remove;
     }
 }
 
