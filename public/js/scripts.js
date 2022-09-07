@@ -21,18 +21,6 @@ const submit = function (e) {
         showData();
     }
 
-const remove = function (e) {
-
-        body = JSON.stringify(json)
-
-        fetch('/delete', {
-            method: 'POST',
-            body 
-        })
-  
-        showData();
-    }
-
 
 const genTable = function (data) {
 
@@ -49,7 +37,7 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + '<button class = "button_delete">remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
+        newLine += ('<td align="center">' + '<button class = "button_delete">Delete</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit">Edit</button>');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
