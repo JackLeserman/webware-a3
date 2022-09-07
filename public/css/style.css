@@ -69,6 +69,16 @@ button{
     margin-right: auto;
 }
 
+.button_help{
+    font-size: 18px;
+    width: 10%;
+    background-color: white;
+    border-color: #E9EFC0 ;
+    font-family: "Open Sans";
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .button_edit{
     font-size: 12px;
     width: 100%;
