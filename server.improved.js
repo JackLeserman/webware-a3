@@ -6,7 +6,7 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
-let tag = 1
+let tag = 0
 
 const appdata = []
 
