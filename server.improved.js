@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'item': 'apples', 'quan':'5','store':'shaws'}
+  { 'item': 'apples', 'quan':'5','store':'shaws'},
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -53,6 +53,10 @@ const handlePost = function( request, response ) {
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
       //response.end( JSON.stringify( appdata ) )
       response.end()
+    }
+    
+    if(url == '/delete'){
+      appdata.splice(row, 1)
     }
     
 
