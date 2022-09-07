@@ -1,18 +1,19 @@
-let tag_count = 1
+let tag_count = 0;
 
 const submit = function (e) {
     e.preventDefault()
 
-    const item = document.querySelector('#item').value
-    const quan = document.querySelector('#quan').value
-    const store = document.querySelector('#store').value
+    const item = document.querySelector('#item').value;
+    const quan = document.querySelector('#quan').value;
+    const store = document.querySelector('#store').value;
     tag_count = tag_count + 1;
-    console.log(tag_count)
+    console.log(tag_count);
+    let new_tag = tag_count.toString
     const json = {
                 'item': item,
                 'quan':quan,
                 'store':store,
-                'tag':tag_count
+                'tag': new_tag
             },
 
             body = JSON.stringify(json)
