@@ -31,7 +31,8 @@ const remove = function (tag) {
     console.log("Current tags " + tag_count)
     const json = { tag: tag };
     const body = JSON.stringify(json);
-   
+    tag_count = tag_count - 1;
+    console.log("Current tags " + tag_count);
     fetch('/remove', {
       method: 'POST',
       body 
@@ -45,8 +46,6 @@ const remove = function (tag) {
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
-    tag_count = tag_count - 1;
-   console.log("Current tags " + tag_count);
     const json = {
         'item': item,
         'quan':quan,
@@ -89,8 +88,6 @@ const genTable = function (data) {
         
         
         const currentItem = data[i];
-        let tag2 = currentItem.tag
-        console.log(tag2)
         let newLine = '<tr>\n';
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
@@ -118,6 +115,7 @@ const showData = function () {
 document.getElementById("refresh").onclick = showData
 
 window.onload = function () {
+    console.log("Loaded and ready to go!!!!")
     const button = document.querySelector('button')
     button.onclick = submit
 }

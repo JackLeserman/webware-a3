@@ -79,6 +79,16 @@ button{
     margin-right: auto;
 }
 
+.button_clear{
+    font-size: 18px;
+    width: 10%;
+    background-color: red;
+    border-color: #E9EFC0 ;
+    font-family: "Open Sans";
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .button_edit{
     font-size: 12px;
     width: 100%;
