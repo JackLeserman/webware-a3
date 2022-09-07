@@ -61,16 +61,14 @@ const genTable = function (data) {
         let newLine = '<tr>\n';
         let id_update = "update_" + i.toString();
         let id_del = "del_" + i.toString();
-
-        let button_del = '<button class = "button_delete" id= "temp_del">Remove</button>'
+        let button_del = '<button class = "button_delete" id="temp_del">Remove</button>'
         let button_update = '<button class = "button_edit" id="temp_update" >Update</button>'
-        document.getElementById("temp_del").id = ID.valueOf(a)
-        document.getElementById("temp_update").id = Id.valueOf(a)
         
-        document.getElementById(id_update).onclick = update;
-        document.getElementById(id_del).onclick = remove;
+        //document.getElementById("temp_del").id = t;
+        //document.getElementById("temp_update").id =ty;
         
-        let spacer = '<td align="center">'
+        
+        let spacer = '<td align="center">';
         newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + '</div></td>\n' + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
