@@ -27,8 +27,6 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
-    console.log("Removing " + tag);
-    console.log("Current tags " + tag_count)
     const json = { tag: tag };
     const body = JSON.stringify(json);
     tag_count = JSON.parse(tag_count - 1);
@@ -58,7 +56,7 @@ const remove = function (tag) {
       method: 'POST',
       body 
     })
-        showData();
+    showData()
     }
 
 
