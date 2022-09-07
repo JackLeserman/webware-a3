@@ -10,15 +10,16 @@ const submit = function (e) {
                 'item': item,
                 'quan':quan,
                 'store':store,
+                'tag':tag
             },
 
             body = JSON.stringify(json)
-
+            
         fetch('/submit', {
             method: 'POST',
             body 
         })
-  
+        tag = tag + 1;
         showData();
     }
 
