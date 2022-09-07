@@ -1,4 +1,5 @@
 let tag = 1
+
 const submit = function (e) {
     e.preventDefault()
 
@@ -24,15 +25,24 @@ const submit = function (e) {
 const remove = function (e) {
     e.preventDefault()
     console.log("remove")
-    let id_value = button.composedPath()[0].tag,
+    let id_value = button.composedPath()[0].id;
     console.log(id_value)
     }
 
-const edit = function (e) {
+
+const update = function (e) {
     e.preventDefault()
     console.log("edit")
     }
 
+const help = function (e) {
+    e.preventDefault()
+    alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update!");
+    }
+
+
+
+document.getElementById("help").onclick = help;
 
 const genTable = function (data) {
 
@@ -49,12 +59,12 @@ const genTable = function (data) {
     for (let i = 0; i < data.length; i++) {
         const currentItem = data[i];
         let newLine = '<tr>\n';
-        newLine += ('<td align="center">' + '<button class = "button_delete" id = "remove">Remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit" id = "edit">Edit</button>');
+        newLine += ('<td align="center">' + '<button class = "button_delete" id = "remove">Remove</button>' +  '<td align="center">' + currentItem.item + '<td align="center">' + currentItem.quan + '<td align="center">' + currentItem.store + '</div></td>\n' + '<td align="center">' + '<button class = "button_edit" id = "update">Update</button>');
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
-        document.getElementById("edit").onclick = edit();
-        document.getElementById("remove").onclick = remove();
+        document.getElementById("update").onclick = update;
+        document.getElementById("remove").onclick = remove;
     }
 }
 

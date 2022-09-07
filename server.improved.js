@@ -8,9 +8,7 @@ const http = require( 'http' ),
 
 let tag = 0;
 
-const appdata = [
-  { 'item': 'apples', 'quan':'5','store':'shaws', 'tag':1}
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
