@@ -7,7 +7,6 @@ const http = require("http"),
   port = 3000;
 
 let tag2 = -1
-let prevtag = -1
 
 const appdata = []
 
@@ -100,16 +99,15 @@ const delRow = function (request, response) {
   request.on("end", function () {
     let index = -1;
     const data = JSON.parse(dataString);
-    tag2 = data.tag;
+    let tag3 = data.tag;
     console.log("REMOVING "  + tag2)
     for (let i = 0; i < appdata.length; i++) {
-      if (String(appdata[i].tag) == String(tag2)) {
+      if (String(appdata[i].tag) == String(tag3)) {
         index = i;
         break;
       }
     }
     appdata.splice(index, 1);
-    tag2 = tag2 - 1;
     const newdata = JSON.stringify(appdata);
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     //response.end( JSON.stringify( appdata ) )
@@ -119,7 +117,6 @@ const delRow = function (request, response) {
 
 const addRow = function (request, response) {
   tag2 = tag2 + 1;
-  prevtag = tag2;
   let dataString = "";
   request.on("data", function (data) {
     dataString += data;
@@ -132,7 +129,7 @@ const addRow = function (request, response) {
       item: data.item,
       quan: data.quan,
       store: data.store,
-      tag: maxtag, //
+      tag: tag2, //
     };
 
     appdata.push(addItem);

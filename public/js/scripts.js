@@ -1,4 +1,4 @@
-let tag_count = 0
+let tag_count = -1
 
 const submit = function (e) {
     e.preventDefault()
@@ -10,6 +10,7 @@ const submit = function (e) {
     console.log("Adding to" + tag_count);
     console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
+    tag_count = tag_count + 1
     const json = {
                 'item': item,
                 'quan':quan,
@@ -39,17 +40,18 @@ const remove = function (tag) {
     showData(); //todo   
     };
 
- function update(tag) {
-    console.log("Updating " + tag);
-    const input = tag;
+ function update(tag2) {
+    console.log("Updating " + tag2);
+    const input = tag2;
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
+    console.log(tag2)
     const json = {
         'item': item,
         'quan':quan,
         'store':store,
-        'tag':tag
+        'tag':tag2
     },
     body = JSON.stringify(json);
    
