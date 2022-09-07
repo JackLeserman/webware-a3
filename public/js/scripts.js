@@ -6,7 +6,7 @@ const submit = function (e) {
     const item = document.querySelector('#item').value;
     const quan = document.querySelector('#quan').value;
     const store = document.querySelector('#store').value;
-    tag_count = tag_count + 1;
+    tag_count = parseInt(tag_count) + 1;
     console.log("Adding to" + tag_count);
     console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
@@ -27,10 +27,13 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
+    console.log("BRUH")
+    if(tag_count > -1){
+      tag_count = parseInt(tag_count) - 1;
+    }
+    console.log("Current tags " + tag_count);
     const json = { tag: tag };
     const body = JSON.stringify(json);
-    tag_count = JSON.parse(tag_count - 1);
-    console.log("Current tags " + tag_count);
     fetch('/remove', {
       method: 'POST',
       body 
@@ -71,7 +74,7 @@ document.getElementById("help").onclick = help
 
 
 const genTable = function (data) {
-
+    console.log("redrawing")
     let table = document.querySelector('#groceryData');
     table.innerHTML =
         '<tr>\n' +
@@ -90,10 +93,10 @@ const genTable = function (data) {
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
         let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
-        
-        
+        let tag_f = JSON.parse(currentItem.tag)
+        console.log("tag_f " + tag_f)
         let spacer = '<td align="center">';
-        newLine += ( spacer + currentItem.tag + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
+        newLine += ( spacer + tag_f + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
