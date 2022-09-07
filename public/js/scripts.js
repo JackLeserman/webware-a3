@@ -73,6 +73,7 @@ document.getElementById("help").onclick = help
 
 const genTable = function (data) {
     console.log("redrawing")
+    console.log("datalen " + data.length)
     let table = document.querySelector('#groceryData');
     table.innerHTML =
         '<tr>\n' +
@@ -84,8 +85,6 @@ const genTable = function (data) {
         '</tr>';
 
     for (let i = 0; i < data.length; i++) {
-        
-        
         const currentItem = data[i];
         let newLine = '<tr>\n';
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
