@@ -31,7 +31,7 @@ const remove = function (tag) {
     console.log("Current tags " + tag_count)
     const json = { tag: tag };
     const body = JSON.stringify(json);
-    tag_count = tag_count - 1;
+    tag_count = JSON.parse(tag_count - 1);
     console.log("Current tags " + tag_count);
     fetch('/remove', {
       method: 'POST',
@@ -138,7 +138,7 @@ const clearall = function (tag) {
     };
           
 document.getElementById("refresh").onclick = showData
-document.getElementById("clear").onclick = clearall
+//document.getElementById("clear").onclick = clearall
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")
