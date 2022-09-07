@@ -37,6 +37,7 @@ const submit = function (e) {
     }) .then(function(info){
        showData();        
       });
+     return false
     }
 
  function update(tag) {
