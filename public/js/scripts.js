@@ -23,23 +23,17 @@ const submit = function (e) {
         showData();
     }
 
- function remove(tag) {
+const remove = function (tag) {
     console.log("remove:" + tag);
-    const input = tag.toString;
-    const json = { tag: input },
+    const json = { tag: tag },
     body = JSON.stringify(json);
    
     fetch('/remove', {
       method: 'POST',
       body 
-    })
-
-    .then( async function (response){
-    let data = await response.json();
-      console.log(data)
-      showData(); //todo   
-    })
-    }
+    });
+    showData(); //todo   
+    };
 
  function update(tag) {
     console.log("remove:");
