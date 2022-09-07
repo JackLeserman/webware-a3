@@ -1,4 +1,4 @@
-let tag = 1
+let tag_count = 1
 
 const submit = function (e) {
     e.preventDefault()
@@ -6,11 +6,13 @@ const submit = function (e) {
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
     const store = document.querySelector('#store').value
+    tag_count = tag_count + 1;
+    console.log(tag_count)
     const json = {
                 'item': item,
                 'quan':quan,
                 'store':store,
-                'tag':tag
+                'tag':tag_count
             },
 
             body = JSON.stringify(json)
@@ -19,7 +21,6 @@ const submit = function (e) {
             method: 'POST',
             body 
         })
-        tag = tag + 1;
         showData();
     }
 
@@ -89,7 +90,7 @@ const genTable = function (data) {
         
         
         let spacer = '<td align="center">';
-        newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + '</div></td>\n' + spacer + button_update);
+        newLine += ( spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store +  spacer + currentItem.tag + '</div></td>\n' + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine

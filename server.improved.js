@@ -49,18 +49,20 @@ const editRow = function( request, response ) {
 
   request.on('end', function() {
     const data = JSON.parse(dataString)
-    tag = data.tag
-    
-    const addItem = {
-      'item': data.item,
-      'quan': data.quan,
-      'store': data.store,
-      'tag': tag,
+    let tag = data.tag;
+    let item = data.item;
+    let store = data.store;
+    let quan = data.quan;
+    for (let i = 0; i < appdata.length; i++) {
+      if(String(appdata[i].tag)== String(tag)){
+        appdata[i].item = item;
+        appdata[i].quan = quan;
+        appdata[i].store = store;
+        appdata[i].tag = tag;
+        
+      }
     }
     
-    
-    //tag = tag + 1
-    appdata.push(addItem)
     
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     //response.end( JSON.stringify( appdata ) )
@@ -80,7 +82,7 @@ const delRow = function( request, response ) {
     const data = JSON.parse(dataString)
     tag = data.tag
     for (let i = 0; i < appdata.length; i++) {
-      if(String(appdata[i].id) === String(tag)){
+      if(String(appdata[i].tag)== String(tag)){
       index = i;
       break;
        }  
