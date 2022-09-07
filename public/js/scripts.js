@@ -34,9 +34,9 @@ const submit = function (e) {
     })
     .then( function (response){
     return response.json();
-    }) .then(function(info)){
+    }) .then(function(info){
        showData();        
-    })
+      });
     }
 
  function update(tag) {
