@@ -41,7 +41,6 @@ const handlePost = function( request, response ) {
 }
 
 const delRow = function( request, response ) {
-  let dataString = "";
   
 }
 
