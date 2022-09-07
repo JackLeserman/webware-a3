@@ -99,9 +99,9 @@ const delRow = function (request, response) {
   request.on("end", function () {
     let index = -1;
     const data = JSON.parse(dataString);
-    tag = data.tag;
+    let tag2 = data.tag;
     for (let i = 0; i < appdata.length; i++) {
-      if (String(appdata[i].tag) == String(tag)) {
+      if (String(appdata[i].id) == String(tag2)) {
         index = i;
         break;
       }

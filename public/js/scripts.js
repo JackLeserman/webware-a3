@@ -1,4 +1,4 @@
-let tag_count = -1;
+let tag_count = 0;
 
 const submit = function (e) {
     e.preventDefault()
@@ -27,10 +27,9 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
+    console.log("Removing tag " + tag);
     console.log("BRUH")
-    if(tag_count > -1){
-      tag_count = parseInt(tag_count) - 1;
-    }
+
     console.log("Current tags " + tag_count);
     const json = { tag: tag };
     const body = JSON.stringify(json);
@@ -95,7 +94,7 @@ const genTable = function (data) {
         let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
         let tag_f = JSON.parse(currentItem.tag)
         let spacer = '<td align="center">';
-        newLine += ( spacer + tag_f + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
+        newLine += (  spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
