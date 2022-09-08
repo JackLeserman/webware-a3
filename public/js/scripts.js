@@ -81,6 +81,7 @@ const genTable = function (data) {
         '<th align="center">Item</th>\n' +
         '<th align="center">Quantity</th>\n' +
         '<th align="center">Unit Cost</th>\n' +
+        '<th align="center">Total Item Cost</th>\n'
         '<th align="center"></th>\n' +
         '</tr>';
 
@@ -93,7 +94,8 @@ const genTable = function (data) {
         let spacer = '<td align="center">';
         data[i].tag = i;
         let tagg = i;
-        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.cost + spacer + button_update);
+        let totalcost = parseFloat(currentItem.quan) * parseFloat(currentItem.cost)
+        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.cost + spacer + totalcost + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
