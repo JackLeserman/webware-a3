@@ -56,16 +56,12 @@ const clearall = function (request, response) {
 
   request.on("end", function () {
     let index = -1;
-    const data = JSON.parse(dataString);
-    appdata = []
-    const newdata = JSON.stringify(appdata);
+    appdata.splice(0,appdata.length);
+    update_tags();
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     //response.end( JSON.stringify( appdata ) )
     response.end();
 
-    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
-    //response.end( JSON.stringify( appdata ) )
-    response.end();
   });
 };
 

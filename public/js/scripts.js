@@ -93,7 +93,7 @@ const genTable = function (data) {
         let spacer = '<td align="center">';
         data[i].tag = i;
         let tagg = i;
-        newLine += (spacer + tagg + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
+        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
@@ -122,21 +122,20 @@ const clearAll2 = function () {
   }
 }
 
-const clearall = function (tag) {
+const clearAll = function (tag) {
+    console.log("Clearing...")
+    tag_count = -1;
     const json = {};
     const body = JSON.stringify(json);
-    tag_count = - 1;
-    console.log("Current tags " + tag_count);
     fetch('/clear', {
       method: 'POST',
       body 
     });
     showData(); //todo   
-    console.log("clear complete")
     };
           
 document.getElementById("refresh").onclick = showData
-//document.getElementById("clear").onclick = clearall
+document.getElementById("clear").onclick = clearAll
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")
