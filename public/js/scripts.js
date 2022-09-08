@@ -5,14 +5,14 @@ const submit = function (e) {
     tag_count = tag_count + 1
     const item = document.querySelector('#item').value;
     const quan = document.querySelector('#quan').value;
-    const store = document.querySelector('#store').value;
+    const cost = document.querySelector('#cost').value;
     console.log("Adding to" + tag_count);
     console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
     const json = {
                 'item': item,
                 'quan':quan,
-                'store':store,
+                'cost':cost,
                 'tag': new_tag
             },
 
@@ -43,12 +43,12 @@ const remove = function (tag) {
     const input = tag2;
     const item = document.querySelector('#item').value
     const quan = document.querySelector('#quan').value
-    const store = document.querySelector('#store').value
+    const cost = document.querySelector('#cost').value
     console.log(tag2)
     const json = {
         'item': item,
         'quan':quan,
-        'store':store,
+        'cost':cost,
         'tag':tag2
     },
     body = JSON.stringify(json);
@@ -80,7 +80,7 @@ const genTable = function (data) {
         '<th align="center"></th>\n' +
         '<th align="center">Item</th>\n' +
         '<th align="center">Quantity</th>\n' +
-        '<th align="center">Store</th>\n' +
+        '<th align="center">Unit Cost</th>\n' +
         '<th align="center"></th>\n' +
         '</tr>';
 
@@ -93,7 +93,7 @@ const genTable = function (data) {
         let spacer = '<td align="center">';
         data[i].tag = i;
         let tagg = i;
-        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
+        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.cost + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine

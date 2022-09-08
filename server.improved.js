@@ -76,13 +76,13 @@ const editRow = function (request, response) {
     const data = JSON.parse(dataString);
     let tag = data.tag;
     let item = data.item;
-    let store = data.store;
+    let cost = data.cost;
     let quan = data.quan;
     for (let i = 0; i < appdata.length; i++) {
       if (String(appdata[i].tag) == String(tag)) {
         appdata[i].item = item;
         appdata[i].quan = quan;
-        appdata[i].store = store;
+        appdata[i].cost = cost;
         appdata[i].tag = tag;
       }
     }
@@ -133,7 +133,7 @@ const addRow = function (request, response) {
     const addItem = {
       item: data.item,
       quan: data.quan,
-      store: data.store,
+      cost: data.cost,
       tag: tag2, //
     };
 
