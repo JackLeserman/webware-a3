@@ -123,14 +123,17 @@ const clearAll2 = function () {
 }
 
 const clearAll = function (tag) {
-    console.log("Clearing...")
+    let isExecuted = confirm("Are you sure to execute this action?");
     tag_count = -1;
     const json = {};
     const body = JSON.stringify(json);
+  if(isExecuted){
+    console.log("Clearing...")
     fetch('/clear', {
       method: 'POST',
       body 
     });
+  }
     showData(); //todo   
     };
           
