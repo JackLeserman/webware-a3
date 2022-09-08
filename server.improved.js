@@ -18,6 +18,12 @@ const server = http.createServer(function (request, response) {
   }
 });
 
+const update_tags = function(){
+  for (let i = 0; i < appdata.length; i++) {
+    appdata[i].tag = i
+  }
+}
+
 const handleGet = function (request, response) {
   const filename = dir + request.url.slice(1);
 
@@ -64,6 +70,7 @@ const clearall = function (request, response) {
 };
 
 const editRow = function (request, response) {
+  update_tags();
   let dataString = "";
   request.on("data", function (data) {
     dataString += data;
@@ -91,6 +98,7 @@ const editRow = function (request, response) {
 };
 
 const delRow = function (request, response) {
+  update_tags();
   let dataString = "";
   request.on("data", function (data) {
     dataString += data;
@@ -116,6 +124,7 @@ const delRow = function (request, response) {
 };
 
 const addRow = function (request, response) {
+  update_tags();
   tag2 = tag2 + 1;
   let dataString = "";
   request.on("data", function (data) {

@@ -91,7 +91,8 @@ const genTable = function (data) {
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
         let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
         let spacer = '<td align="center">';
-        let tagg = currentItem.tag
+        data[i].tag = i;
+        let tagg = i;
         newLine += (spacer + tagg + spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.store + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
