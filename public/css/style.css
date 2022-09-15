@@ -1,11 +1,11 @@
 /*Style your own assignment! This is fun! */
-/*https://colorhunt.co/palette/e9efc0b4e19783bd754e944f*/
+/*https://colorhunt.co/palette/f9f2ed3ab0ffffb562f87474*/
 h1{
     text-align: center;
     font-family: "Open Sans";
     padding-top: 20px;
     font-size: 45px;
-    color: #E9EFC0;
+    color: #F87474;
     line-height: 0
 }
 
@@ -13,11 +13,11 @@ h2{
     text-align: center;
     font-family: "Open Sans";
     font-size: 25px;
-    color: #EAE509;
+    color: #FFB562;
 }
 body {
     text-align: center;
-    background-color: #4E944F;
+    background-color: #F9F2ED;
 }
 
 input[type="text"], textarea {
