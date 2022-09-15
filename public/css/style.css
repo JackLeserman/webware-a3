@@ -13,7 +13,7 @@ h2{
     text-align: center;
     font-family: "Open Sans";
     font-size: 25px;
-    color: #FFB562;
+    color: #3AB0FF;
 }
 body {
     text-align: center;
@@ -21,7 +21,7 @@ body {
 }
 
 input[type="text"], textarea {
-    background-color: #E9EFC0;
+    background-color: #F9F2ED;
     height: 30px;
 }
 
@@ -110,6 +110,16 @@ button{
     font-family: "Open Sans";
     margin-left: auto;
     margin-right: auto;
+}
+
+.uploadbox{
+  background-color: #FFB562;
+  padding-bottom: 10px;
+  padding-top: 10p
+}
+
+.img_upload{
+ 
 }
 
 .carts {
