@@ -78,10 +78,9 @@ const genTable = function (data) {
     table.innerHTML =
         '<tr>\n' +
         '<th align="center"></th>\n' +
-        '<th align="center">Item</th>\n' +
-        '<th align="center">Quantity</th>\n' +
-        '<th align="center">Unit Cost</th>\n' +
-        '<th align="center">Total Item Cost</th>\n'
+        '<th align="center">Username</th>\n' +
+        '<th align="center">Title</th>\n' +
+        '<th align="center">Image</th>\n' +
         '<th align="center"></th>\n' +
         '</tr>';
 
