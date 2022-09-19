@@ -1,125 +1,21 @@
+const { MongoClient, ServerApiVersion } = require('mongodb');
+//const uri = "mongodb+srv://tester:tester123@cluster0.f9zkh.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`
 
+//const client = new mongodb.MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology:true })
 
-server.listen(process.env.PORT || port);
-const{ MongoClient } = require('mongodb');
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect()
+  .then( () => {
+    // will only create collection if it doesn't exist
+    return client.db( 'test' ).collection( '01' )
+  })
+  .then( collection => {
+    // blank query returns all documents
+    return collection.find({ }).toArray()
+  })
+  .then( console.log )
 
-async function addRow(usernameIN, titleIN, imgIN, tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await createRow(client, {
-            username: usernameIN,
-            title: titleIN,
-            img: imgIN,
-            tag: tagIN
-        })
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function getRow(tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await getRowByID(client, tagIN)
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function removeRow(tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await deleteRow(client, tagIN)
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function updateRow(tagToUpdate, usernameIN, titleIN, imgIN, tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await updateData(client, tagToUpdate, {username: usernameIN, title: titleIN, img: imgIN, tag: tagIN});
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function deleteRow(client, tagIN){
-    const result = await client.db("catbase").collection("catdata").deleteOne(
-        {tag: tagIN});
-
-    console.log(`${result.deletedCount} rows were deleted`);
-}
-
-async function updateData(client, tagIN, updatedRow){
-    const result = await client.db("catbase").collection("catdata").updateOne({tag: 
-        tagIN}, {$set: updatedRow});
-    
-    console.log(`${result.matchedCount} rows matched the criteria`)
-    console.log(`${result.modifiedCount} rows were updated`) 
-}
-
-
-async function getRowByID(client, tagIN){
-    const result = await client.db("catbase").collection("catdata").findOne({tag: tagIN});
-    if(result){
-        console.log(`Found a row with tag'${tagIN}'`);
-        console.log(result);
-        return result;
-    }else{
-        console.log("No rows found under that name");
-    }
-}
-
-async function createRow(client, newRow){
-    const result = await client.db("catbase").collection("catdata").insertOne
-    (newRow);
-
-    console.log(`New Row Created: ${result.insertedId}`);
-
-}
-
-async function listDatabases(client){
-    const databasesList = await client.db().admin().listDatabases();
-
-    console.log("Databases:");
-    databasesList.databases.forEach(db => {
-        console.log(`- ${db.name}`);
-    } )
-}
-
-//getRow(69)
-//addRow("Jack", "Cat", "Img Here", 690).catch(console.error);
-//removeRow(69);
-//updateRow(1, "Jake", "Lil Cat", "Img here but NEW", 100);
 
 const http = require("http"),
   fs = require("fs"),
@@ -163,12 +59,109 @@ const handlePost = function (request, response) {
   if (request.url === "/submit") {
     addRow(request, response);
   } else if (request.url === "/remove") {
-    deleteRow(request, response);
+    delRow(request, response);
   } else if (request.url === "/update") {
     editRow(request, response);
   } else if (request.url === "/clear") {
     clearall(request, response);
   }
+};
+
+const clearall = function (request, response) {
+  let dataString = "";
+  request.on("data", function (data) {
+    dataString += data;
+  });
+
+  request.on("end", function () {
+    let index = -1;
+    appdata.splice(0,appdata.length);
+    update_tags();
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+
+  });
+};
+
+const editRow = function (request, response) {
+  update_tags();
+  let dataString = "";
+  request.on("data", function (data) {
+    dataString += data;
+  });
+
+  request.on("end", function () {
+    const data = JSON.parse(dataString);
+    let tag = data.tag;
+    let item = data.item;
+    let cost = data.cost;
+    let quan = data.quan;
+    for (let i = 0; i < appdata.length; i++) {
+      if (String(appdata[i].tag) == String(tag)) {
+        appdata[i].item = item;
+        appdata[i].quan = quan;
+        appdata[i].cost = cost;
+        appdata[i].tag = tag;
+      }
+    }
+
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+  });
+};
+
+const delRow = function (request, response) {
+  update_tags();
+  let dataString = "";
+  request.on("data", function (data) {
+    dataString += data;
+  });
+
+  request.on("end", function () {
+    let index = -1;
+    const data = JSON.parse(dataString);
+    let tag3 = data.tag;
+    console.log("REMOVING "  + tag2)
+    for (let i = 0; i < appdata.length; i++) {
+      if (String(appdata[i].tag) == String(tag3)) {
+        index = i;
+        break;
+      }
+    }
+    appdata.splice(index, 1);
+    const newdata = JSON.stringify(appdata);
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+  });
+};
+
+const addRow = function (request, response) {
+  update_tags();
+  tag2 = tag2 + 1;
+  let dataString = "";
+  request.on("data", function (data) {
+    dataString += data;
+  });
+
+  request.on("end", function () {
+    const data = JSON.parse(dataString);
+
+    const addItem = {
+      item: data.item,
+      quan: data.quan,
+      cost: data.cost,
+      tag: tag2, //
+    };
+
+    appdata.push(addItem);
+
+    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    //response.end( JSON.stringify( appdata ) )
+    response.end();
+  });
 };
 
 const sendFile = function (response, filename) {
