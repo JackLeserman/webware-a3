@@ -5,7 +5,129 @@ const http = require("http"),
   mime = require("mime"),
   dir = "public/",
   port = 3000;
-//const{ MongoClient } = require('mongodb');
+
+const{ MongoClient } = require('mongodb');
+
+async function addRowDB(usernameIN, titleIN, imgIN, tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await createRow(client, {
+            username: usernameIN,
+            title: titleIN,
+            img: imgIN,
+            tag: tagIN
+        })
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function getRowDB(tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await getRowByID(client, tagIN)
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function removeRowDB(tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await deleteRow(client, tagIN)
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function updateRowDB(tagToUpdate, usernameIN, titleIN, imgIN, tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await updateData(client, tagToUpdate, {username: usernameIN, title: titleIN, img: imgIN, tag: tagIN});
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function deleteRow(client, tagIN){
+    const result = await client.db("catbase").collection("catdata").deleteOne(
+        {tag: tagIN});
+
+    console.log(`${result.deletedCount} rows were deleted`);
+}
+
+async function updateData(client, tagIN, updatedRow){
+    const result = await client.db("catbase").collection("catdata").updateOne({tag: 
+        tagIN}, {$set: updatedRow});
+    
+    console.log(`${result.matchedCount} rows matched the criteria`)
+    console.log(`${result.modifiedCount} rows were updated`) 
+}
+
+
+async function getRowByID(client, tagIN){
+    const result = await client.db("catbase").collection("catdata").findOne({tag: tagIN});
+    if(result){
+        console.log(`Found a row with tag'${tagIN}'`);
+        console.log(result);
+        return result;
+    }else{
+        console.log("No rows found under that name");
+    }
+}
+
+async function createRow(client, newRow){
+    const result = await client.db("catbase").collection("catdata").insertOne
+    (newRow);
+
+    console.log(`New Row Created: ${result.insertedId}`);
+
+}
+
+async function listDatabases(client){
+    const databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => {
+        console.log(`- ${db.name}`);
+    } )
+}
+
+//getRow(6)
+//addRow("Jack", "Cat", "Img Here", 6).catch(console.error);
+//removeRow(6);
+//updateRow(6, "Jake", "Lil Cat", "Img here but NEW", 100);
+
+
+
 let tag2 = -1
 
 const appdata = []
@@ -129,14 +251,12 @@ const addRow = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
-    const addItem = {
-      name: data.name,
-      title: data.title,
-      img: data.img,
-      tag: tag2, //
-    };
+    const name = data.name;
+    const title = data.title;
+    const img = data.img;
+    const tag = tag2;
 
-    appdata.push(addItem);
+    addRowDB(name, title, img, tag);
 
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     //response.end( JSON.stringify( appdata ) )
