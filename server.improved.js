@@ -6,6 +6,8 @@ const http = require("http"),
   dir = "public/",
   port = 3000;
 
+let tag2 = -1
+
 const{ MongoClient } = require('mongodb');
 
 async function addRowDB(usernameIN, titleIN, imgIN, tagIN) {
@@ -122,13 +124,9 @@ async function listDatabases(client){
 }
 
 //getRow(6)
-//addRow("Jack", "Cat", "Img Here", 6).catch(console.error);
-//removeRow(6);
-//updateRow(6, "Jake", "Lil Cat", "Img here but NEW", 100);
-
-
-
-let tag2 = -1
+//addRow("Jack", "Cat", "Img Here", 7).catch(console.error);
+//removeRow(7);
+//updateRow(7, "Jake", "Lil Cat", "Img here but NEW", 100);
 
 const appdata = []
 
@@ -251,12 +249,25 @@ const addRow = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
+    
+    /*
+        const data = JSON.parse(dataString);
     const name = data.name;
     const title = data.title;
     const img = data.img;
-    const tag = tag2;
+    const tag = data.tag;
 
     addRowDB(name, title, img, tag);
+    */
+    
+    const addItem = {
+      name: data.name,
+      title: data.title,
+      img: data.img,
+      tag: tag2, //
+    };
+
+    appdata.push(addItem);
 
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
     //response.end( JSON.stringify( appdata ) )
