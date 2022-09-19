@@ -1,3 +1,22 @@
+const { MongoClient, ServerApiVersion } = require('mongodb');
+//const uri = "mongodb+srv://tester:tester123@cluster0.f9zkh.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@${process.env.HOST}`
+
+//const client = new mongodb.MongoClient( uri, { useNewUrlParser: true, useUnifiedTopology:true })
+
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect()
+  .then( () => {
+    // will only create collection if it doesn't exist
+    return client.db( 'test' ).collection( '01' )
+  })
+  .then( collection => {
+    // blank query returns all documents
+    return collection.find({ }).toArray()
+  })
+  .then( console.log )
+
+
 const http = require("http"),
   fs = require("fs"),
   // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -161,3 +180,5 @@ const sendFile = function (response, filename) {
     }
   });
 };
+
+server.listen(process.env.PORT || port);
