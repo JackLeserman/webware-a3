@@ -3,18 +3,20 @@ let tag_count = -1
 const submit = function (e) {
     e.preventDefault()
     tag_count = tag_count + 1
-    const item = document.querySelector('#item').value;
-    const quan = document.querySelector('#quan').value;
-    const cost = document.querySelector('#cost').value;
+    const name = document.querySelector('#name').value;
+    const title = document.querySelector('#title').value;
+    const img = document.querySelector('#img').value;
     console.log("Adding to" + tag_count);
     console.log("Current tags " + tag_count)
     let new_tag = tag_count.toString
     const json = {
-                'item': item,
-                'quan':quan,
-                'cost':cost,
+                'name': name,
+                'title':title,
+                'img':img,
                 'tag': new_tag
             },
+          
+            
 
             body = JSON.stringify(json)
             
@@ -26,9 +28,6 @@ const submit = function (e) {
     }
 
 const remove = function (tag) {
-    console.log("BRUH")
-    console.log("REMOVING "  + tag)
-    console.log("Current tags " + tag_count);
     const json = { tag: tag };
     const body = JSON.stringify(json);
     fetch('/remove', {
@@ -39,17 +38,16 @@ const remove = function (tag) {
     };
 
  function update(tag2) {
-    console.log("Updating " + tag2);
     const input = tag2;
-    const item = document.querySelector('#item').value
-    const quan = document.querySelector('#quan').value
-    const cost = document.querySelector('#cost').value
+    const name = document.querySelector('#name').value;
+    const title = document.querySelector('#title').value;
+    const img = document.querySelector('#img').value;
     console.log(tag2)
     const json = {
-        'item': item,
-        'quan':quan,
-        'cost':cost,
-        'tag':tag2
+          'name': name,
+          'title':title,
+          'img':img,
+          'tag': tag2
     },
     body = JSON.stringify(json);
    
@@ -78,10 +76,9 @@ const genTable = function (data) {
     table.innerHTML =
         '<tr>\n' +
         '<th align="center"></th>\n' +
-        '<th align="center">Item</th>\n' +
-        '<th align="center">Quantity</th>\n' +
-        '<th align="center">Unit Cost</th>\n' +
-        '<th align="center">Total Item Cost</th>\n'
+        '<th align="center">Username</th>\n' +
+        '<th align="center">Title</th>\n' +
+        '<th align="center">Image</th>\n' +
         '<th align="center"></th>\n' +
         '</tr>';
 
@@ -91,11 +88,11 @@ const genTable = function (data) {
         //let button_del = '<button class = "button_delete" id='+ i.toString +'>Remove</button>'
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
         let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
-        let spacer = '<td align="center">';
+        let spacer = '<td align="center">'
+        let imgg = '<img src="'+ currentItem.img +'">'
         data[i].tag = i;
         let tagg = i;
-        let totalcost = parseFloat(currentItem.quan) * parseFloat(currentItem.cost)
-        newLine += (spacer + button_del +  spacer + currentItem.item + spacer + currentItem.quan + spacer + currentItem.cost + spacer + totalcost + spacer + button_update);
+        newLine += (spacer + button_del +  spacer + currentItem.name + spacer + currentItem.title + spacer + imgg + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine

@@ -5,127 +5,7 @@ const http = require("http"),
   mime = require("mime"),
   dir = "public/",
   port = 3000;
-
-const{ MongoClient } = require('mongodb');
-
-async function addRow(usernameIN, titleIN, imgIN, tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await createRow(client, {
-            username: usernameIN,
-            title: titleIN,
-            img: imgIN,
-            tag: tagIN
-        })
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function getRow(tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await getRowByID(client, tagIN)
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function removeRow(tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await deleteRow(client, tagIN)
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function updateRow(tagToUpdate, usernameIN, titleIN, imgIN, tagIN) {
-    const uri = 
-      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
-        //TODO change login here
-      const client = new MongoClient(uri);
-
-      try{
-        await client.connect();
-        await updateData(client, tagToUpdate, {username: usernameIN, title: titleIN, img: imgIN, tag: tagIN});
-    }catch(e){
-        console.error(e);
-      } finally {
-        await client.close();
-      }
-}
-
-async function deleteRow(client, tagIN){
-    const result = await client.db("catbase").collection("catdata").deleteOne(
-        {tag: tagIN});
-
-    console.log(`${result.deletedCount} rows were deleted`);
-}
-
-async function updateData(client, tagIN, updatedRow){
-    const result = await client.db("catbase").collection("catdata").updateOne({tag: 
-        tagIN}, {$set: updatedRow});
-    
-    console.log(`${result.matchedCount} rows matched the criteria`)
-    console.log(`${result.modifiedCount} rows were updated`) 
-}
-
-
-async function getRowByID(client, tagIN){
-    const result = await client.db("catbase").collection("catdata").findOne({tag: tagIN});
-    if(result){
-        console.log(`Found a row with tag'${tagIN}'`);
-        console.log(result);
-        return result;
-    }else{
-        console.log("No rows found under that name");
-    }
-}
-
-async function createRow(client, newRow){
-    const result = await client.db("catbase").collection("catdata").insertOne
-    (newRow);
-
-    console.log(`New Row Created: ${result.insertedId}`);
-
-}
-
-async function listDatabases(client){
-    const databasesList = await client.db().admin().listDatabases();
-
-    console.log("Databases:");
-    databasesList.databases.forEach(db => {
-        console.log(`- ${db.name}`);
-    } )
-}
-
-//getRow(69)
-//addRow("Jack", "Cat", "Img Here", 690).catch(console.error);
-//removeRow(69);
-//updateRow(1, "Jake", "Lil Cat", "Img here but NEW", 100);
-
+//const{ MongoClient } = require('mongodb');
 let tag2 = -1
 
 const appdata = []
@@ -194,14 +74,15 @@ const editRow = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
-    let name = data.name;
-    let title = data.title;
-    let cost = data.cost;
+    let tag = data.tag;
+    const name = document.querySelector('#name').image;
+    const title = document.querySelector('#title').value;
+    const img = document.querySelector('#img').value;
     for (let i = 0; i < appdata.length; i++) {
       if (String(appdata[i].tag) == String(tag)) {
-        appdata[i].item = item;
-        appdata[i].quan = quan;
-        appdata[i].cost = cost;
+        appdata[i].name = name;
+        appdata[i].title = title;
+        appdata[i].img = img;
         appdata[i].tag = tag;
       }
     }
@@ -238,7 +119,7 @@ const delRow = function (request, response) {
   });
 };
 
-const addRow2 = function (request, response) {
+const addRow = function (request, response) {
   update_tags();
   tag2 = tag2 + 1;
   let dataString = "";
@@ -248,11 +129,10 @@ const addRow2 = function (request, response) {
 
   request.on("end", function () {
     const data = JSON.parse(dataString);
-
     const addItem = {
-      item: data.item,
-      quan: data.quan,
-      cost: data.cost,
+      name: data.name,
+      title: data.title,
+      img: data.img,
       tag: tag2, //
     };
 
