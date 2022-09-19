@@ -163,3 +163,122 @@ const sendFile = function (response, filename) {
 };
 
 server.listen(process.env.PORT || port);
+const{ MongoClient } = require('mongodb');
+
+async function addRow(usernameIN, titleIN, imgIN, tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await createRow(client, {
+            username: usernameIN,
+            title: titleIN,
+            img: imgIN,
+            tag: tagIN
+        })
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function getRow(tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await getRowByID(client, tagIN)
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function removeRow(tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await deleteRow(client, tagIN)
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function updateRow(tagToUpdate, usernameIN, titleIN, imgIN, tagIN) {
+    const uri = 
+      "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
+        //TODO change login here
+      const client = new MongoClient(uri);
+
+      try{
+        await client.connect();
+        await updateData(client, tagToUpdate, {username: usernameIN, title: titleIN, img: imgIN, tag: tagIN});
+    }catch(e){
+        console.error(e);
+      } finally {
+        await client.close();
+      }
+}
+
+async function deleteRow(client, tagIN){
+    const result = await client.db("catbase").collection("catdata").deleteOne(
+        {tag: tagIN});
+
+    console.log(`${result.deletedCount} rows were deleted`);
+}
+
+async function updateData(client, tagIN, updatedRow){
+    const result = await client.db("catbase").collection("catdata").updateOne({tag: 
+        tagIN}, {$set: updatedRow});
+    
+    console.log(`${result.matchedCount} rows matched the criteria`)
+    console.log(`${result.modifiedCount} rows were updated`) 
+}
+
+
+async function getRowByID(client, tagIN){
+    const result = await client.db("catbase").collection("catdata").findOne({tag: tagIN});
+    if(result){
+        console.log(`Found a row with tag'${tagIN}'`);
+        console.log(result);
+        return result;
+    }else{
+        console.log("No rows found under that name");
+    }
+}
+
+async function createRow(client, newRow){
+    const result = await client.db("catbase").collection("catdata").insertOne
+    (newRow);
+
+    console.log(`New Row Created: ${result.insertedId}`);
+
+}
+
+async function listDatabases(client){
+    const databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => {
+        console.log(`- ${db.name}`);
+    } )
+}
+
+//getRow(69)
+//addRow("Jack", "Cat", "Img Here", 690).catch(console.error);
+//removeRow(69);
+//updateRow(1, "Jake", "Lil Cat", "Img here but NEW", 100);
