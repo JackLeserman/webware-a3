@@ -9,12 +9,14 @@ const http = require("http"),
 let tag2 = -1
 
 //const{ MongoClient } = require('mongodb');
+//const mongodb = require('mongodb');
+
 
 async function addRowDB(usernameIN, titleIN, imgIN, tagIN) {
     const uri = 
       "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
         //TODO change login here
-      const client = new MongoClient(uri);
+      const client = new mongodb.MongoClient(uri);
 
       try{
         await client.connect();
@@ -35,7 +37,7 @@ async function getRowDB(tagIN) {
     const uri = 
       "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
         //TODO change login here
-      const client = new MongoClient(uri);
+      const client = new mongodb.MongoClient(uri);
 
       try{
         await client.connect();
@@ -51,7 +53,7 @@ async function removeRowDB(tagIN) {
     const uri = 
       "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
         //TODO change login here
-      const client = new MongoClient(uri);
+      const client = new mongodb.MongoClient(uri);
 
       try{
         await client.connect();
@@ -67,7 +69,7 @@ async function updateRowDB(tagToUpdate, usernameIN, titleIN, imgIN, tagIN) {
     const uri = 
       "mongodb+srv://jackleserman:jackleserman@testcluster.8ad4jnf.mongodb.net/?retryWrites=true&w=majority"
         //TODO change login here
-      const client = new MongoClient(uri);
+      const client = new mongodb.MongoClient(uri);
 
       try{
         await client.connect();
@@ -267,6 +269,7 @@ const addRow = function (request, response) {
       tag: tag2, //
     };
 
+    //addRowDB(data.name, data.title, data.img, data.tag).catch(console.error);
     appdata.push(addItem);
 
     response.writeHead(200, "OK", { "Content-Type": "text/plain" });
