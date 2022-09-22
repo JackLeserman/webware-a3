@@ -63,15 +63,17 @@ const help = function (e) {
     alert("Welcome to Grocery Boi! To add items to the grocery list, enter text below the shopping carts, then hit Submit. To remove, hit the remove button on the corresponding row. To update, enter the new information at the top just below the shopping carts, then hit update! If lists do not update due to server challenges, try Manual Refresh!");
     }
 
-document.getElementById("help").onclick = help
+//document.getElementById("help").onclick = help
 
 
 
 
 
 const genTable = function (data) {
+
     console.log("redrawing")
     console.log("datalen " + data.length)
+    console.log(data);
     let table = document.querySelector('#groceryData');
     table.innerHTML =
         '<tr>\n' +
@@ -89,10 +91,10 @@ const genTable = function (data) {
         let button_update = '<button class = "button_edit" id='+ i + ' onclick = "update(this.id)"+ >Update</button>'
         let button_del = '<button class = "button_delete" id='+ i + ' onclick = "remove(this.id)">Remove</button>'
         let spacer = '<td align="center">'
-        let imgg = '<img src="'+ currentItem.img +'">'
+        cat_img = '<img src='+ String(currentItem.img) +' width="100" height="100"></img>'
         data[i].tag = i;
         let tagg = i;
-        newLine += (spacer + button_del +  spacer + currentItem.name + spacer + currentItem.title + spacer + imgg + spacer + button_update);
+        newLine += (spacer + button_del +  spacer + currentItem.username + spacer + currentItem.title + spacer + cat_img + spacer + button_update);
         newLine += '</div>' + '</tr>';
 
         table.innerHTML += newLine
@@ -135,9 +137,6 @@ const clearAll = function (tag) {
   }
     showData(); //todo   
     };
-          
-document.getElementById("refresh").onclick = showData
-document.getElementById("clear").onclick = clearAll
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")
