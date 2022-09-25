@@ -75,13 +75,28 @@ button{
 }
 
 .button_subm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 25px;
     width: 20%;
     background-color: #EAE509;
     border-color: #E9EFC0 ;
     font-family: "Open Sans";
-    margin-left: auto;
-    margin-right: auto;
+    vertical-align: middle;
+
+}
+
+.button_acc{
+    font-size: 25px;
+    width: 125%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EAE509;
+    border-color: #E9EFC0 ;
+    font-family: "Open Sans";
+    vertical-align: middle;
 }
 
 .button_help2{

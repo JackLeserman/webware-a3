@@ -33,9 +33,7 @@ const submit = function (e) {
                 'img':img,
                 'tag': new_tag
             },
-          
             
-
             body = JSON.stringify(json)
             
         fetch('/submit', {
@@ -159,6 +157,6 @@ const clearAll = function (tag) {
 
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")
-    const button = document.querySelector('button')
-    button.onclick = create_account
+    //const button = document.querySelector('button')
+    //button.onclick = create_account
 }
