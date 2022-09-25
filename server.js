@@ -211,11 +211,12 @@ async function addUserDB(usernameIN, passwordIN) {
     console.log(`New Row Created: ${result.insertedId}`);
   }
 
-  const newUser = function (request, response) {
+  const newUser = async function (request, response) {
     console.log("Creating new user")
     let dataString = "";
     request.on("data", function (data) {
       dataString += data;
+      console.log("data")
     });
   
     request.on("end", async function () {
@@ -229,12 +230,10 @@ async function addUserDB(usernameIN, passwordIN) {
     });
   };
 
-app.post('/create_account', (req, res) => {
-  newUser(req, res);
-  res.redirect('index')
+app.post('/create_account', async (req, res) => {
+  await newUser(req, res);
+  res.render('index', { msg:'Account Created', layout:false })
 })
-
-
 
 
 // add some middleware that always sends unauthenicaetd users to the login page
@@ -383,7 +382,7 @@ const addRow = function (request, response) {
     */
 
     await addRowDB(data.name, data.title, data.img, data.tag).catch(console.error);
-    response.writeHead(200, "OK", { "Content-Type": "text/plain" });
+    response.writeHead(302, "OK", { "Content-Type": "text/plain" });
     response.end();
   });
 };
