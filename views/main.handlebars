@@ -15,12 +15,20 @@
     <br>
   <h1>CatBase</h1>
   <h2>A Cat Image Sharing Site!</h2>
-  <h3>{{{msg}}}</h3>
+  <br>
+  <h3><b><u>{{{msg}}}</u></b><br>
+
+    Upload your cat pictures here by entering your name, the image title, and the image URL below.<br>
+    To update an entry, enter the new values in the boxes above, then hit "update" on the row you wish to update! <br>
+    To remove an entry, hit "remove" on the row you wish to remove!
+  </h3>
+  </hgroup>
+  <hgroup>
   </hgroup>
   <body>
   <main class="container">
     <form action=""> <!--todo-->
-      <input type="text" id="name" placeholder="Name">
+      <input type="text" id="name" placeholder="Photographer Name">
       <input type="text" id="title" placeholder="Image Title">
       <input type="text" id="img" placeholder="Image URL">
       <br>
@@ -31,10 +39,7 @@
     </form>
     <br>
     <br>
-    <button>Submit</button>
-    <br>
-    <button class = "contrast button_subm" id = "help">Manual Reload</button>
-    </div>
+    <button id = "submit">Submit</button>
     <br>
       <br>
       <br>
