@@ -3,16 +3,22 @@
   <head>
     <script src="js/scripts.js"></script>
       <body>
-    {{{msg}}}
      </body>
     <title>CS4241 Assignment 3</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <link href="../CSS/style.css" rel="stylesheet" type="text/css">
   </head>
+  <hgroup>
+    <br>
+    <br>
   <h1>CatBase</h1>
   <h2>A Cat Image Sharing Site!</h2>
+  <h3>{{{msg}}}</h3>
+  </hgroup>
   <body>
+  <main class="container">
     <form action=""> <!--todo-->
       <input type="text" id="name" placeholder="Name">
       <input type="text" id="title" placeholder="Image Title">
@@ -25,17 +31,16 @@
     </form>
     <br>
     <br>
-    <button class = "button_subm">Submit</button>
+    <button>Submit</button>
     <br>
-    <br>
-    <button class = "button_help" id = "refresh">Manual Refresh</button>
-    <button class = "button_help2" id = "clear">Clear Data</button>
-    <button class = "button_help" id = "help">How To Use</button>
+    <button class = "contrast button_subm" id = "help">Manual Reload</button>
+    </div>
     <br>
       <br>
       <br>
     <table id="groceryData"></table>
     <script src="js/scripts.js">
     </script>
+  </main>
   </body>
 </html>

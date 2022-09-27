@@ -64,9 +64,9 @@ summary[role="link"].secondary:is([aria-current],:hover,:active,:focus) {
 
 /* Hero Image */
 article div:nth-of-type(2) {
-  background-image: url(cat.jpg); 
   display: none;
   background-color: #374956;
+  background-image: url('cat.png');
   background-position: center;
   background-size: cover;
 }

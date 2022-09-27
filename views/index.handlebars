@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CS4241 Assignment 3</title>
     <meta name="description" content="Login Page for CatBase">
-    <link rel="shortcut icon" href="https://picocss.com/favicon.ico">
     <link rel="canonical" href="https://picocss.com/examples/sign-in/">
 
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
@@ -25,11 +24,11 @@
           </hgroup>
           <form action = "/login" method = "POST">
              username: <input type="text" name="username" />
-             password:<input type="password" name="password" value="password" />
-            <button type="submit" class="contrast">Login</button>
+             password:<input type="password" name="password"/>
+            <button type="submit">Login</button>
           </form>
           <form action = "/register" method = "POST">
-            <button type="submit" class="secondary">Register</button>
+            <button type="submit" class="contrast">Register</button>
           </form>
         <h3>{{{msg}}}</h3>
         </div>

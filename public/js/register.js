@@ -18,6 +18,7 @@ const create_account = function (e) {
         })
     }
 
+
 const submit = function (e) {
     e.preventDefault()
     tag_count = tag_count + 1
@@ -157,7 +158,5 @@ const clearAll = function (tag) {
 window.onload = function () {
     console.log("Loaded and ready to go!!!!")
     const button = document.querySelector('button')
-    button.onclick = create_account 
-    /* ^^^  when this is uncommented, it adds to mongo but doesnt refresh
-    when this is commented, it refreshes but doesnt add to mongo */
+    button.addEventListener("click", create_account);
 }

@@ -231,7 +231,12 @@ async function addUserDB(usernameIN, passwordIN) {
   };
 
 app.post('/create_account', async (req, res) => {
-  await newUser(req, res);
+  await newUser(req, res).then()
+  //console.log("We should redirect now...")
+  //res.render('register', { msg:'Account Created', layout:false })
+})
+
+app.post('/redirect', async (req, res) => {
   res.render('index', { msg:'Account Created', layout:false })
 })
 
@@ -403,5 +408,5 @@ const sendFile = function (response, filename) {
     }
   });
 };
-
+//test_user,test_password
 app.listen( 3000 )
